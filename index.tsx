@@ -1,9 +1,10 @@
-import React from 'react';
-import { createRoot, Root } from 'react-dom/client';
-import { App } from './App';
-import './style.scss';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
 
-const rootElement: HTMLElement | null = document.getElementById('root');
-const root: Root = createRoot(rootElement as HTMLElement);
+// estilos base (deja comentado el SCSS por ahora)
+// import './style.scss'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
 
-root.render(<App />);
+createRoot(document.getElementById('root')!).render(<App />)

@@ -1,29 +1,20 @@
-import React from "react";
-import { ButtonCounter } from "./components/ButtonCounter";
+import React from 'react'
 
-export const App = () => {
-	const name: string = "Hello React Button";
-
-	const onChildClicked = (e: number) => {
-		console.warn("callback from parent triggered", e);
-	};
-
-	return (
-		<div className="p-2">
-			<h1>React TSX Starter</h1>
-			<div>containing:</div>
-			<ul>
-				<li>React</li>
-				<li>Twitter Bootstrap</li>
-				<li>Basic Functional Components App and ButtonCounter</li>
-			</ul>
-			<ButtonCounter name={name} onClicked={(e) => onChildClicked(e)} />
-			<div className="mt-5">
-				coded by
-				<a target="blank" href="https://github.com/oardi">
-					Ardian Shala
-				</a>
-			</div>
-		</div>
-	);
-};
+export default function App() {
+  return (
+    <div
+      style={{
+        padding: 24,
+        border: '4px solid red',
+        background: '#fffbe6',
+        color: '#111',
+        fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Arial'
+      }}
+      className="container"
+    >
+      <h1 className="display-5">✅ Vite + React</h1>
+      <p>Si ves este bloque con borde rojo, la app está montando bien.</p>
+      <button className="btn btn-primary">Botón Bootstrap</button>
+    </div>
+  )
+}
