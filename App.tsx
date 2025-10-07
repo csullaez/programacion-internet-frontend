@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { RickMortyType } from "./Ricktypes.ts";
+import { RickMortyType } from "./Ricktypes";
+import DataTable from "./components/DataTable.js";
 
 export default function App() {
 	const [contador, setContador] = useState<number>(0);
@@ -14,32 +15,37 @@ export default function App() {
 		}
 	};
 
+	const columnas = [
+		{ clave: "id", encabezado: "Id", ordenable: true },
+		{ clave: "nombre", encabezado: "Nombre", ordenable: true },
+		{ clave: "imagen", encabezado: "Imagen", ordenable: true },
+		{
+			clave: "acciones",
+			encabezado: "Acciones",
+			alinear: "right",
+			render: (_, row) => (
+				<button className="text-sm underline" onClick={() => alert(row.name)}>
+					Ver
+				</button>
+			),
+		},
+	];
+
+	const datos2 = datos.map((dato) => {
+		return {
+			id: dato.id,
+			nombre: dato.name,
+			imagen: dato.image,
+		};
+	});
+
 	useEffect(() => {
 		obtenerDatos();
 	}, []);
 
 	return (
-		<div
-			style={{
-				padding: 24,
-				border: "4px solid red",
-				background: "#fffbe6",
-				color: "#111",
-				fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial",
-			}}
-			className="container"
-		>
-			<h1 className="display-5">✅CODESANDBOX Vite + React {contador}</h1>
-			<p>Si ves este bloque con borde rojo, la app está montando bien.</p>
-			<button className="btn btn-primary" onClick={() => setContador(contador + 1)}>
-				Botón Bootstrap
-			</button>
-			{datos.map((dato) => (
-				<>
-					{dato.id % 2 == 0 ? dato.id : ""} <h1> {dato.name} </h1>
-					<img src={dato.image} />
-				</>
-			))}
+		<div>
+			<DataTable columnas={columnas} datos={datos2} buscable pageSizeOptions={[15, 10, 20]} />
 		</div>
 	);
 }
